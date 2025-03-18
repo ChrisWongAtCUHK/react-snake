@@ -1,42 +1,62 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.page {
+  width: 100%;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.button {
+  margin: 0 10px;
+  margin-bottom: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button-play {
+  width: 190px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.title {
+  color: rgb(0, 199, 0);
+  margin-left: 30px;
+  letter-spacing: 30px;
+  text-shadow: 1px 1px 1px darkgreen, -1px 1px 1px darkgreen,
+    1px -1px 1px darkgreen, -1px -1px 1px darkgreen, 0 0 64px lightgreen,
+    0 0 64px lightgreen;
+  font-size: 64px;
+  font-family: "Courier", monospace;
+  font-weight: bold;
 }
 
-.card {
-  padding: 2em;
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  color: gray;
+  font-family: sans-serif;
 }
 
-.read-the-docs {
-  color: #888;
+.disclaimer {
+  flex: 1;
+  text-align: end;
+}
+
+.social-links {
+  margin-bottom: 10px;
+}
+
+.source-code--link {
+  background-color: gray;
+  color: black !important;
+  font-size: 14px;
+  font-weight: 800;
+  border: solid gray;
+  border-top-width: 2.6px;
+  border-bottom-width: 2.6px;
+  border-left-width: 16.6px;
+  border-right-width: 16.6px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif;
+}
+
+.footer {
+  margin-top: 20px;
 }
