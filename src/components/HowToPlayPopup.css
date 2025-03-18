@@ -7,7 +7,7 @@
   height: 100%;
   background-color: #00000080;
   display: table;
-  transition: opacity 0.3s ease;
+  /* transition: opacity 0.3s ease; */
 }
 
 .modal-wrapper {
@@ -28,7 +28,7 @@
   box-shadow: 1px 1px 1px darkgreen, -1px 1px 1px darkgreen,
     1px -1px 1px darkgreen, -1px -1px 1px darkgreen, 0 0 10px lightgreen,
     0 0 10px lightgreen;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
   font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -56,16 +56,3 @@
  * these styles.
  */
 
-.modal-enter {
-  opacity: 0;
-}
-
-.modal-leave-active {
-  opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}

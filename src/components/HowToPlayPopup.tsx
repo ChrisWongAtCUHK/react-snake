@@ -35,19 +35,17 @@ function HowToPlayPopup(props: Props) {
   }, [myRequest])
 
   return (
-    <div className='modal-mask'>
-      <div className='modal-wrapper'>
-        <div className='modal-container'>
-          <div className='modal-description'>
-            <div dangerouslySetInnerHTML={{ __html: howToPlayMarkdownHTML }} />
-          </div>
-          <div className='modal-footer'>
-            <Button
-              className='modal-default-button'
-              title='Close'
-              click={props.close}
-            />
-          </div>
+    <div className='modal-wrapper'>
+      <div className='modal-container'>
+        <div className='modal-description'>
+          <div dangerouslySetInnerHTML={{ __html: howToPlayMarkdownHTML }} />
+        </div>
+        <div className='modal-footer'>
+          <Button
+            className='modal-default-button'
+            title='Close'
+            click={props.close}
+          />
         </div>
       </div>
     </div>

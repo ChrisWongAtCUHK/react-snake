@@ -60,3 +60,24 @@
 .footer {
   margin-top: 20px;
 }
+
+.modal-enter {
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+}
+.modal-exit {
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+.modal-enter-active {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+  transition: all 0.3s ease-in;
+}
+
+.modal-exit-active {
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5); 
+  transition: all 0.3s ease-out;
+}
