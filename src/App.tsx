@@ -76,7 +76,6 @@ function App() {
   }
 
   function onStopGame() {
-    console.log(interval.current)
     clearInterval(interval.current)
     dispatch(setIsPlaying({ isPlaying: false }))
   }
@@ -203,7 +202,6 @@ function App() {
     interval.current = setInterval(() => {
       onTick(gameRule)
     }, tickRate.current)
-    console.log(interval.current)
   }
 
   useEffect(() => {

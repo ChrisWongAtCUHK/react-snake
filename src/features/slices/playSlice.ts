@@ -41,7 +41,7 @@ const playSlice = createSlice({
       state.snake = undefined as unknown as ISnake
       state.snack = undefined as unknown as ISnack
       state.playground.isGameOver = false
-
+      
       return state
     },
     setGameOver: (state) => {
@@ -60,11 +60,14 @@ const playSlice = createSlice({
       const snakeHead_new = action.payload.directionTicks[
         state.playground.direction
       ](action.payload.snakeHead?.x, action.payload.snakeHead?.y)
-      
       const snakeNeck = state.snake.coordinates[1]
+      console.log(state.playground.direction)
+      console.log(action.payload.snakeHead)
+      console.log(snakeHead_new)
+      console.log(`{${snakeNeck?.x}, ${snakeNeck?.y}}`)
 
       const snakeHead =
-        !snakeNeck || areSameCoordinates(snakeHead_new, snakeNeck)
+        !snakeNeck || !areSameCoordinates(snakeHead_new, snakeNeck)
           ? snakeHead_new
           : action.payload.snakeHead?.x > snakeNeck.x
           ? action.payload.directionTicks[Direction.RIGHT](
@@ -85,7 +88,7 @@ const playSlice = createSlice({
               action.payload.snakeHead?.x,
               action.payload.snakeHead?.y
             )
-
+      console.log(snakeHead)
       const snakeTail = isSnakeEating
         ? state.snake.coordinates
         : action.payload.snakeTail
@@ -95,6 +98,9 @@ const playSlice = createSlice({
 
       state.snake.coordinates = [snakeHead, ...snakeTail]
       state.snack.coordinate = snackCoordinate
+      if(isSnakeEating) {
+        console.log(`{${state.snake.coordinates[1].x},  ${state.snake.coordinates[1].y}}`)
+      }
 
       return state
     },
