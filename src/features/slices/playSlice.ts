@@ -60,7 +60,7 @@ const playSlice = createSlice({
       const snakeHead_new = action.payload.directionTicks[
         state.playground.direction
       ](action.payload.snakeHead?.x, action.payload.snakeHead?.y)
-
+      
       const snakeNeck = state.snake.coordinates[1]
 
       const snakeHead =

@@ -61,11 +61,7 @@ function App() {
   const snack = useRef(play.snack)
   const tickRate = useRef(play.tickRate)
   const currentDirection = useRef(play.playground.direction)
-
-  // Interval variable (It will only run once)
-  let interval = setInterval(() => {
-    clearInterval(interval)
-  }, 1)
+  const interval = useRef(0)
 
   function openPopup() {
     if (!isShowingHowToPlayPopup) {
@@ -80,7 +76,8 @@ function App() {
   }
 
   function onStopGame() {
-    clearInterval(interval)
+    console.log(interval.current)
+    clearInterval(interval.current)
     dispatch(setIsPlaying({ isPlaying: false }))
   }
 
@@ -148,7 +145,11 @@ function App() {
   }
 
   function snakeHeadTouchesTail() {
-    return isSnake(snakeTail.current, snakeHead.current?.x, snakeHead.current?.y)
+    return isSnake(
+      snakeTail.current,
+      snakeHead.current?.x,
+      snakeHead.current?.y
+    )
   }
 
   function isSnakeOutside() {
@@ -199,16 +200,17 @@ function App() {
     generateInitials()
     dispatch(setIsPlaying({ isPlaying: true }))
 
-    interval = setInterval(() => {
+    interval.current = setInterval(() => {
       onTick(gameRule)
     }, tickRate.current)
+    console.log(interval.current)
   }
 
   useEffect(() => {
     function onChangeDirection(e: KeyboardEvent) {
       const newDirection = KEY_CODES_MAPPER[e.key]
-
       // Prevent scrolling if the user pushed an arrow key for navigating the snake
+
       if (newDirection) e.preventDefault()
       if (!newDirection || newDirection === currentDirection.current) {
         return
@@ -219,7 +221,7 @@ function App() {
 
     return () => {
       window.removeEventListener('keydown', onChangeDirection)
-      clearInterval(interval)
+      clearInterval(interval.current)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -237,7 +239,7 @@ function App() {
 
   useEffect(() => {
     currentDirection.current = play.playground.direction
-  } ,[play.playground.direction])
+  }, [play.playground.direction])
 
   return (
     <div className='page'>
@@ -263,7 +265,7 @@ function App() {
         <Button
           click={onStopGame}
           title='Stop'
-          style={{ marginBottom: '20px'}}
+          style={{ marginBottom: '20px' }}
         />
       ) : null}
       <CSSTransition
