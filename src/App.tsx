@@ -232,9 +232,13 @@ function App() {
   }, [play.snake])
 
   useEffect(() => {
+    snack.current = play.snack
+  }, [play.snack])
+
+  useEffect(() => {
     currentDirection.current = play.playground.direction
   } ,[play.playground.direction])
-  
+
   return (
     <div className='page'>
       <h1 className='title'>SNAKE</h1>
