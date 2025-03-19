@@ -15,10 +15,10 @@ function areSameCoordinates(
   coordinates_b: ICoordinate
 ): boolean {
   return isPosition(
-    coordinates_a.x,
-    coordinates_a.y,
-    coordinates_b.x,
-    coordinates_b.y
+    coordinates_a?.x,
+    coordinates_a?.y,
+    coordinates_b?.x,
+    coordinates_b?.y
   )
 }
 
@@ -27,7 +27,7 @@ function isSnake(
   x: number,
   y: number
 ): boolean {
-  if (!snakeCoordinates.length) return false
+  if (!snakeCoordinates?.length) return false
 
   return (
     snakeCoordinates.filter((coord) => isPosition(coord.x, coord.y, x, y))

@@ -146,26 +146,26 @@ function App() {
   }
 
   function snakeHeadTouchesTail() {
-    return isSnake(snakeTail.current, snakeHead.current.x, snakeHead.current.y)
+    return isSnake(snakeTail.current, snakeHead.current?.x, snakeHead.current?.y)
   }
 
   function isSnakeOutside() {
     return (
-      snakeHead.current.x >= GRID_SIZE ||
-      snakeHead.current.y >= GRID_SIZE ||
-      snakeHead.current.x < 0 ||
-      snakeHead.current.y < 0
+      snakeHead.current?.x >= GRID_SIZE ||
+      snakeHead.current?.y >= GRID_SIZE ||
+      snakeHead.current?.x < 0 ||
+      snakeHead.current?.y < 0
     )
   }
 
   function isSnakeEating() {
-    return areSameCoordinates(snakeHead.current, snack.current.coordinate)
+    return areSameCoordinates(snakeHead.current, snack.current?.coordinate)
   }
 
   function getSnakeTail() {
-    return snake.current.coordinates.slice(
+    return snake.current?.coordinates.slice(
       0,
-      snake.current.coordinates.length - 1
+      snake.current?.coordinates.length - 1
     )
   }
 
@@ -222,6 +222,12 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    snake.current = play.snake
+    snakeHead.current = play.snake?.coordinates[0]
+    snakeTail.current = play.snake?.coordinates.slice(1)
+  }, [play.snake])
 
   return (
     <div className='page'>

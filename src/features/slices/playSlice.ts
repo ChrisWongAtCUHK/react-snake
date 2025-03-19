@@ -59,31 +59,31 @@ const playSlice = createSlice({
 
       const snakeHead_new = action.payload.directionTicks[
         state.playground.direction
-      ](action.payload.snakeHead.x, action.payload.snakeHead.y)
+      ](action.payload.snakeHead?.x, action.payload.snakeHead?.y)
 
       const snakeNeck = state.snake.coordinates[1]
 
       const snakeHead =
         !snakeNeck || areSameCoordinates(snakeHead_new, snakeNeck)
           ? snakeHead_new
-          : action.payload.snakeHead.x > snakeNeck.x
+          : action.payload.snakeHead?.x > snakeNeck.x
           ? action.payload.directionTicks[Direction.RIGHT](
-              action.payload.snakeHead.x,
-              action.payload.snakeHead.y
+              action.payload.snakeHead?.x,
+              action.payload.snakeHead?.y
             )
-          : action.payload.snakeHead.x < snakeNeck.x
+          : action.payload.snakeHead?.x < snakeNeck.x
           ? action.payload.directionTicks[Direction.LEFT](
-              action.payload.snakeHead.x,
-              action.payload.snakeHead.y
+              action.payload.snakeHead?.x,
+              action.payload.snakeHead?.y
             )
-          : action.payload.snakeHead.y > snakeNeck.y
+          : action.payload.snakeHead?.y > snakeNeck.y
           ? action.payload.directionTicks[Direction.DOWN](
-              action.payload.snakeHead.x,
-              action.payload.snakeHead.y
+              action.payload.snakeHead?.x,
+              action.payload.snakeHead?.y
             )
           : action.payload.directionTicks[Direction.UP](
-              action.payload.snakeHead.x,
-              action.payload.snakeHead.y
+              action.payload.snakeHead?.x,
+              action.payload.snakeHead?.y
             )
 
       const snakeTail = isSnakeEating
