@@ -3,8 +3,9 @@ import './Button.css'
 
 interface Props {
   click: (e: MouseEvent<HTMLButtonElement>) => void
-  className: string
+  className?: string
   title: string
+  style?: object
 }
 
 function Button(props: Props) {
@@ -12,7 +13,7 @@ function Button(props: Props) {
     props.click(e)
   }
   return (
-    <button className={props.className} onClick={handleClick}>
+    <button className={props.className} onClick={handleClick} style={props.style}>
       {props.title}
     </button>
   )

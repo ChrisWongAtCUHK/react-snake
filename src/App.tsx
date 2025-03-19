@@ -32,26 +32,30 @@ function App() {
     RIGHT: (x: number, y: number) => ({ x: x + 1, y }),
     LEFT: (x: number, y: number) => ({ x: x - 1, y }),
   }
-  const KEY_CODES_MAPPER: Record<number, Direction> = {
-    38: Direction.UP, // ARROW_UP Key
-    87: Direction.UP, // W Key
+  const KEY_CODES_MAPPER: Record<string, Direction> = {
+    ArrowUp: Direction.UP, // ARROW_UP Key
+    w: Direction.UP, // W Key
+    W: Direction.UP, // W Key
 
-    39: Direction.RIGHT, // ARROW_RIGHT Key
-    68: Direction.RIGHT, // D Key
+    ArrowRight: Direction.RIGHT, // ARROW_RIGHT Key
+    d: Direction.RIGHT, // D Key
+    D: Direction.RIGHT, // D Key
 
-    37: Direction.LEFT, // ARROW_LEFT Key
-    65: Direction.LEFT, // A Key
+    ArrowLeft: Direction.LEFT, // ARROW_LEFT Key
+    a: Direction.LEFT, // A Key
+    A: Direction.LEFT, // A Key
 
-    40: Direction.DOWN, // ARROW_DOWN Key
-    83: Direction.DOWN, // S Key
+    ArrowDown: Direction.DOWN, // ARROW_DOWN Key
+    s: Direction.DOWN, // S Key
+    S: Direction.DOWN, // S Key
   }
   const dispatch = useDispatch()
   const play = useSelector(selectPlay)
   const [isShowingHowToPlayPopup, setIsShowingHowToPlayPopup] = useState(false)
   const nodeRef = useRef(null)
   const snake = useRef(play.snake)
-  const snakeHead = useRef(play.snake.coordinates[0])
-  const snakeTail = useRef(play.snake.coordinates.slice(1))
+  const snakeHead = useRef(play.snake?.coordinates[0])
+  const snakeTail = useRef(play.snake?.coordinates.slice(1))
   const snack = useRef(play.snack)
   const tickRate = useRef(play.tickRate)
   const currentDirection = useRef(play.playground.direction)
@@ -200,7 +204,8 @@ function App() {
 
   useEffect(() => {
     function onChangeDirection(e: KeyboardEvent) {
-      const newDirection = KEY_CODES_MAPPER[parseInt(e.key, 10)]
+      const newDirection = KEY_CODES_MAPPER[e.key]
+      console.log(newDirection)
 
       // Prevent scrolling if the user pushed an arrow key for navigating the snake
       if (newDirection) e.preventDefault()
@@ -215,7 +220,7 @@ function App() {
       window.removeEventListener('keydown', onChangeDirection)
       clearInterval(interval)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -231,6 +236,20 @@ function App() {
           className='button button-play'
         />
       )}
+      {play.isPlaying ? null : (
+        <Button
+          click={() => onStartGame(GameRule.WITH_BORDERS)}
+          title='Play with borders'
+          className='button button-play'
+        />
+      )}
+      {play.isPlaying ? (
+        <Button
+          click={onStopGame}
+          title='Stop'
+          style={{ marginBottom: '20px'}}
+        />
+      ) : null}
       <CSSTransition
         in={isShowingHowToPlayPopup}
         nodeRef={nodeRef}
