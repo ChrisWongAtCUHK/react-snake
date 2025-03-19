@@ -99,8 +99,9 @@ const playSlice = createSlice({
       return state
     },
     snakeChangeDirection: (state, action) => {
-      if (!areOppositeDirections(state.playground.direction, action.payload.direction))
+      if (!areOppositeDirections(state.playground.direction, action.payload.direction)) {
         state.playground.direction = action.payload.direction 
+      }
       return state
     },
   },

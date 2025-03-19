@@ -35,19 +35,19 @@ function App() {
   }
   const KEY_CODES_MAPPER: Record<string, Direction> = {
     ArrowUp: Direction.UP, // ARROW_UP Key
-    w: Direction.UP, // W Key
+    w: Direction.UP, // w Key
     W: Direction.UP, // W Key
 
     ArrowRight: Direction.RIGHT, // ARROW_RIGHT Key
-    d: Direction.RIGHT, // D Key
+    d: Direction.RIGHT, // d Key
     D: Direction.RIGHT, // D Key
 
     ArrowLeft: Direction.LEFT, // ARROW_LEFT Key
-    a: Direction.LEFT, // A Key
+    a: Direction.LEFT, // a Key
     A: Direction.LEFT, // A Key
 
     ArrowDown: Direction.DOWN, // ARROW_DOWN Key
-    s: Direction.DOWN, // S Key
+    s: Direction.DOWN, // s Key
     S: Direction.DOWN, // S Key
   }
   const dispatch = useDispatch()
@@ -207,7 +207,6 @@ function App() {
   useEffect(() => {
     function onChangeDirection(e: KeyboardEvent) {
       const newDirection = KEY_CODES_MAPPER[e.key]
-      console.log(newDirection)
 
       // Prevent scrolling if the user pushed an arrow key for navigating the snake
       if (newDirection) e.preventDefault()
@@ -232,6 +231,10 @@ function App() {
     score.current = play.snake?.coordinates?.length - 1
   }, [play.snake])
 
+  useEffect(() => {
+    currentDirection.current = play.playground.direction
+  } ,[play.playground.direction])
+  
   return (
     <div className='page'>
       <h1 className='title'>SNAKE</h1>
