@@ -61,10 +61,6 @@ const playSlice = createSlice({
         state.playground.direction
       ](action.payload.snakeHead?.x, action.payload.snakeHead?.y)
       const snakeNeck = state.snake.coordinates[1]
-      console.log(state.playground.direction)
-      console.log(action.payload.snakeHead)
-      console.log(snakeHead_new)
-      console.log(`{${snakeNeck?.x}, ${snakeNeck?.y}}`)
 
       const snakeHead =
         !snakeNeck || !areSameCoordinates(snakeHead_new, snakeNeck)
@@ -88,7 +84,7 @@ const playSlice = createSlice({
               action.payload.snakeHead?.x,
               action.payload.snakeHead?.y
             )
-      console.log(snakeHead)
+
       const snakeTail = isSnakeEating
         ? state.snake.coordinates
         : action.payload.snakeTail
@@ -98,9 +94,6 @@ const playSlice = createSlice({
 
       state.snake.coordinates = [snakeHead, ...snakeTail]
       state.snack.coordinate = snackCoordinate
-      if(isSnakeEating) {
-        console.log(`{${state.snake.coordinates[1].x},  ${state.snake.coordinates[1].y}}`)
-      }
 
       return state
     },
